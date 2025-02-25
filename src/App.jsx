@@ -58,16 +58,18 @@ function App() {
             />
           </div>
 
-          {/* Swap button to switch between "from" and "to" currencies */}
-          <div className="relative w-full flex justify-center mb-3">
-            <button
-              type="button"
-              className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-white rounded-md bg-blue-600 text-white px-2 py-1 text-sm sm:text-base hover:bg-blue-700"
-              onClick={swap}
-            >
-              Swap
-            </button>
-          </div>
+        {/* Swap button to switch between "from" and "to" currencies */}
+<div className="relative flex justify-center items-center w-full mb-3">
+  <button
+    type="button"
+    className="border-2 border-white rounded-md bg-blue-600 text-white p-2 hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-400"
+    onClick={swap}
+    aria-label="Swap currencies"
+  >
+    Swap🔄
+  </button>
+</div>
+
 
           {/* Input box for the converted amount and target currency */}
           <div className="w-full mt-5">
