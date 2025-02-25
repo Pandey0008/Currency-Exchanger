@@ -1,6 +1,5 @@
 import React, { useId } from "react";
 
-// InputBox component to handle input fields for amount and currency selection
 function InputBox({
   label,
   amount = "",
@@ -12,51 +11,46 @@ function InputBox({
   currencyDisable = false,
   className = "",
 }) {
-  // Generating a unique ID for the amount input field
-  const amountInputId = useId("");
+  const amountInputId = useId();
 
   return (
-    <div
-      className={`bg-white p-3 rounded-lg text-sm flex flex-col sm:flex-row gap-4 sm:gap-0 ${className}`}
-    >
+    <div className={`bg-white p-4 rounded-lg text-sm flex flex-col sm:flex-row gap-4 ${className}`}>
       {/* Amount Input Section */}
       <div className="sm:w-1/2 w-full">
         <label
-          htmlFor={amountInputId} // Linking the label to the amount input
-          className="text-black mb-2 inline-block"
+          htmlFor={amountInputId}
+          className="text-black mb-2 inline-block font-medium"
         >
-          {label} {/* Displaying the label */}
+          {label}
         </label>
         <input
-          id={amountInputId} // Unique ID for the input
-          className="outline-none w-full bg-transparent py-1.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+          id={amountInputId}
+          className="outline-none w-full bg-gray-50 px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 transition-all"
           type="number"
-          placeholder="Amount" // Placeholder text for the input
-          disabled={amountDisable} // Disabling the input if amountDisable is true
-          value={amount} // Binding the input value to the state (amount)
-          onChange={(e) =>
-            // Handling change in the input and calling onAmountChange if provided
-            onAmountChange && onAmountChange(Number(e.target.value))
-          }
+          placeholder="Enter Amount"
+          disabled={amountDisable}
+          value={amount}
+          onChange={(e) => onAmountChange && onAmountChange(e.target.value ? Number(e.target.value) : "")}
+          aria-label="Amount input field"
         />
       </div>
 
       {/* Currency Selector Section */}
-      <div className="sm:w-1/2 w-full flex flex-wrap sm:justify-end sm:text-right">
-        <p className="text-black mb-2 w-full">Currency Type</p>
+      <div className="sm:w-1/2 w-full">
+        <label className="text-black mb-2 inline-block font-medium">
+          Currency Type
+        </label>
         <select
-          className="rounded-lg px-3 py-1 bg-gray-100 cursor-pointer outline-none border border-gray-300 focus:ring-2 focus:ring-blue-500 w-full sm:w-auto"
-          value={selectCurrency} // Binding selected currency to state (selectCurrency)
-          onChange={(e) =>
-            // Handling change in the selected currency and calling onCurrencyChange if provided
-            onCurrencyChange && onCurrencyChange(e.target.value)
-          }
-          disabled={currencyDisable} // Disabling the select input if currencyDisable is true
+          className="rounded-lg px-3 py-2 bg-gray-100 cursor-pointer outline-none border border-gray-300 focus:ring-2 focus:ring-blue-500 w-full sm:w-auto transition-all"
+          value={selectCurrency}
+          onChange={(e) => onCurrencyChange && onCurrencyChange(e.target.value)}
+          disabled={currencyDisable}
+          aria-label="Currency selection dropdown"
+          tabIndex={0}
         >
-          {/* Mapping over the currency options and displaying them as options */}
           {currencyOptions.map((currency) => (
             <option key={currency} value={currency}>
-              {currency} {/* Displaying each currency in the dropdown */}
+              {currency}
             </option>
           ))}
         </select>
