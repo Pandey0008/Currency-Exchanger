@@ -31,18 +31,19 @@ function App() {
 
   return (
     <div
-      className="w-full h-screen flex flex-col justify-center items-center bg-cover bg-no-repeat px-4 sm:px-8"
+      className="w-full min-h-screen flex flex-col justify-center items-center bg-cover bg-no-repeat px-4 sm:px-8"
       style={{
         backgroundImage: `url('https://images.pexels.com/photos/545064/pexels-photo-545064.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')`,
       }}
     >
-      <div className="w-full max-w-lg border border-gray-60 rounded-lg p-5 backdrop-blur-sm bg-white/0">
+      <div className="w-full max-w-lg border border-gray-60 rounded-lg p-5 backdrop-blur-sm bg-white/10 shadow-lg sm:p-8 md:max-w-md lg:max-w-lg">
         {/* Form for handling currency conversion */}
         <form
           onSubmit={(e) => {
             e.preventDefault(); // Preventing default form submission
             convert(); // Calling the conversion function
           }}
+          className="flex flex-col"
         >
           {/* Input box for the amount and source currency */}
           <div className="w-full mb-5">
@@ -58,13 +59,13 @@ function App() {
           </div>
 
           {/* Swap button to switch between "from" and "to" currencies */}
-          <div className="relative w-full h-0.5 flex justify-center mb-3">
+          <div className="relative w-full flex justify-center mb-3">
             <button
               type="button"
-              className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-white rounded-md bg-blue-600 text-white px-1"
+              className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-white rounded-md bg-blue-600 text-white px-2 py-1 text-sm sm:text-base hover:bg-blue-700"
               onClick={swap}
             >
-              swap
+              Swap
             </button>
           </div>
 
@@ -83,7 +84,7 @@ function App() {
           {/* Submit button to trigger the conversion */}
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 transition duration-300"
+            className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg mt-4 text-sm sm:text-base hover:bg-blue-700 transition duration-300"
           >
             Convert {from.toUpperCase()} to {to.toUpperCase()}
           </button>
